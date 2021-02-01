@@ -11,14 +11,13 @@
 
 <div id="main" v-for="velo in velos">
 
-    <pre>{{ velo.fields.address }}</pre>
-
+    <pre>{{ velo }}</pre>
 <!--    <pre>{{ velos }}</pre> -->
 
 
 
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
@@ -33,7 +32,7 @@
                 .get('https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_stations-velos-libre-service-nantes-metropole-disponibilites&q=&rows=50&facet=banking&facet=bonus&facet=status&facet=contract_name')
                 .then(res => {
                     this.velos = res.data.records
-                    console.log(res.data.records.fields.address)
+                    console.log(res.data.records[0].fields.address)
                 })
         }
     });
