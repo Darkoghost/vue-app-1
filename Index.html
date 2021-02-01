@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Appel API Pokemon</title>
 
+
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
 </head>
 <body>
 
@@ -16,9 +18,26 @@
 
 
 <!--    <pre>{{ velos }}</pre> -->
-    <div v-for="velo in velos">
+  <!--  <div v-for="velo in velos">
         <pre>{{ velo.fields.address }}</pre>
-    </div>
+    </div>-->
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Adresse</th>
+        </tr>
+        </thead>
+        <tbody v-for="velo in velos">
+        <tr>
+            <th scope="row">1</th>
+            <td><pre>{{ velo.fields.name }}</pre></td>
+            <td><pre>{{ velo.fields.address }}</pre></td>
+        </tr>
+        </tbody>
+    </table>
 
 
 </div>
