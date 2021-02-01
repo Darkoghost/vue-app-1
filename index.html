@@ -33,7 +33,7 @@
             <th scope="col">Adresse</th>
         </tr>
         </thead>
-        <tbody v-for="velo in velos" v-if="incrementCounter(velo)">{{ counter }}>
+        <tbody v-for="(velo, index) in velos" v-if="incrementCounter(index)">
         <tr>
             <th scope="row"><pre>{{ counter }}</pre></th>
             <td><pre>{{ velo.fields.name }}</pre></td>
@@ -62,14 +62,15 @@
                 })
         },
         methods: {
-            incrementCounter: function (velo) {
+            incrementCounter: function (index) {
                 this.counter = this.counter++
-                if(this.counter>=50) {
+                if (this.counter >= 50) {
                     return false
                 } else {
                     return true
                 }
             }
+        }
     });
 
 
