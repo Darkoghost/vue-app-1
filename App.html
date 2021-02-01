@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Appel API Pokemon</title>
+
+</head>
+<body>
+
+<div id="main">
+
+    <pre>{{ velos }}</pre>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.5/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+
+    var demo = new Vue({
+        el: '#main',
+        data: {
+            velos: []
+        },
+        beforeCreate() {
+            axios
+                .get('https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_stations-velos-libre-service-nantes-metropole-disponibilites&q=')
+                .then(res => {
+                    this.velos = res.data.records
+                    console.log(res.data.records)
+                })
+        }
+    });
+</script>
+</body>
+</html>
+
