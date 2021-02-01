@@ -23,7 +23,7 @@
     </div>-->
     <div class="row">
         <p>Recherche par adresse :</p>
-        <input type="text" class="input-group-text" v-on:change="">
+        <input v-model="message" type="text" class="input-group-text" v-on:change="recherche">
     </div>
     <table class="table">
         <thead>
@@ -33,9 +33,9 @@
             <th scope="col">Adresse</th>
         </tr>
         </thead>
-        <tbody v-for="(velo, index) in velos" v-if="incrementCounter(index)">
+        <tbody v-for="(velo, index) in velos">
         <tr>
-            <th scope="row"><pre>{{ counter }}</pre></th>
+            <th scope="row"><pre>{{ index }}</pre></th>
             <td><pre>{{ velo.fields.name }}</pre></td>
             <td><pre>{{ velo.fields.address }}</pre></td>
         </tr>
@@ -55,14 +55,16 @@
         },
         beforeCreate() {
             axios
-                .get('https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_stations-velos-libre-service-nantes-metropole-disponibilites&q=&rows=50&facet=banking&facet=bonus&facet=status&facet=contract_name')
+                .get('https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404' +
+                    '_stations-velos-libre-service-nantes-metropole-disponibilites&q=&rows=50&facet=banking&facet=bonus&' +
+                    'facet=status&facet=contract_name')
                 .then(res => {
                     this.velos = res.data.records
                     console.log(res.data.records[0].fields.address)
                 })
         },
         methods: {
-            incrementCounter: function (index) {
+            recherche: function (index) {
                 this.counter = this.counter++
                 if (this.counter >= 50) {
                     return false
