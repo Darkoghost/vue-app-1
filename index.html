@@ -51,7 +51,8 @@
         el: '#main',
         data: {
             velos: [],
-            counter: 0
+            counter: 0,
+            message: null
         },
         beforeCreate() {
             axios
@@ -64,12 +65,12 @@
                 })
         },
         methods: {
-            recherche: function (index) {
-                this.counter = this.counter++
-                if (this.counter >= 50) {
-                    return false
-                } else {
-                    return true
+            recherche: function (message) {
+                if (message == "")
+                {
+
+                }else {
+
                 }
             }
         }
