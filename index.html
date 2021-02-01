@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,12 +16,15 @@
 
 <div id="main" >
 
-
+<h1 class="text-center">Station vélo</h1>
 <!--    <pre>{{ velos }}</pre> -->
   <!--  <div v-for="velo in velos">
         <pre>{{ velo.fields.address }}</pre>
     </div>-->
-
+    <div class="row">
+        <p>Recherche par adresse :</p>
+        <input type="text" class="input-group-text" v-on:change="">
+    </div>
     <table class="table">
         <thead>
         <tr>
@@ -30,9 +33,9 @@
             <th scope="col">Adresse</th>
         </tr>
         </thead>
-        <tbody v-for="velo in velos">
+        <tbody v-for="velo in velos" v-if="incrementCounter(velo)">{{ counter }}>
         <tr>
-            <th scope="row">1</th>
+            <th scope="row"><pre>{{ counter }}</pre></th>
             <td><pre>{{ velo.fields.name }}</pre></td>
             <td><pre>{{ velo.fields.address }}</pre></td>
         </tr>
@@ -47,7 +50,8 @@
     var demo = new Vue({
         el: '#main',
         data: {
-            velos: []
+            velos: [],
+            counter: 0
         },
         beforeCreate() {
             axios
@@ -56,8 +60,19 @@
                     this.velos = res.data.records
                     console.log(res.data.records[0].fields.address)
                 })
-        }
+        },
+        methods: {
+            incrementCounter: function (velo) {
+                this.counter = this.counter++
+                if(this.counter>=50) {
+                    return false
+                } else {
+                    return true
+                }
+            }
     });
+
+
 </script>
 </body>
 </html>
