@@ -23,7 +23,7 @@
     </div>-->
     <div class="row">
         <p>Recherche par adresse :</p>
-        <input v-model="message" type="text" class="input-group-text" v-on:change="recherche">
+        <input class="form-control" type="text" placeholder="Entrer votre recherche" v-model="searchVelo"/>
     </div>
     <table class="table">
         <thead>
@@ -51,8 +51,7 @@
         el: '#main',
         data: {
             velos: [],
-            counter: 0,
-            message: null
+            searchVelo: ""
         },
         beforeCreate() {
             axios
@@ -64,14 +63,24 @@
                     console.log(res.data.records[0].fields.address)
                 })
         },
-        methods: {
-            recherche: function (message) {
-                if (message == "")
-                {
+        computed: {
+            eventSearch: function () {
+                var velos_array = this.velos,
+                    searchVelo = this.searchVelo;
 
-                }else {
-
+                if(!searchVelo){
+                    return velos_array;
                 }
+
+                searchVelo = searchVelo.trim().toLowerCase();
+
+                velos_array = velos_array.filter(function(item){
+                    if(item.fields.address.toLowerCase().indexOf(searchVelo) !== -1){
+                        return item;
+                    }
+                })
+
+                return velos_array;
             }
         }
     });
