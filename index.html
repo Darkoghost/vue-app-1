@@ -33,11 +33,11 @@
             <th scope="col">Adresse</th>
         </tr>
         </thead>
-        <tbody v-for="(velo, index) in velos">
+        <tbody v-for="(velo, index) in veloFiltrer">
         <tr>
-            <th scope="row"><pre>{{ index }}</pre></th>
-            <td><pre>{{ velo.fields.name }}</pre></td>
-            <td><pre>{{ velo.fields.address }}</pre></td>
+            <th scope="row">{{ index }}</th>
+            <td>{{ velo.fields.name }}</td>
+            <td>{{ velo.fields.address }}</td>
         </tr>
         </tbody>
     </table>
@@ -64,7 +64,7 @@
                 })
         },
         computed: {
-            eventSearch: function () {
+            veloFiltrer: function () {
                 var velos_array = this.velos,
                     searchVelo = this.searchVelo;
 
